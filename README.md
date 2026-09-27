@@ -55,7 +55,7 @@ Admin Processing
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/print-service-app.git
+git clone https://github.com/fhrnisa/print-service-app.git
 cd print-service-app
 
 composer install
