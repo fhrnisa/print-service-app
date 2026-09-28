@@ -9,24 +9,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $totalOrders = Order::count();
+        $stats = [
+            'total'    => Order::count(),
+            'menunggu' => Order::where('status', 'pending')->count(),
+            'diproses' => Order::where('status', 'processing')->count(),
+            'selesai'  => Order::where('status', 'completed')->count(),
+        ];
 
-        $waitingOrders = Order::where('status', 'menunggu')->count();
+        $recentOrders = Order::latest()->take(5)->get();
 
-        $processingOrders = Order::where('status', 'diproses')->count();
-
-        $completedOrders = Order::where('status', 'selesai')->count();
-
-        $recentOrders = Order::latest()
-            ->take(5)
-            ->get();
-
-        return view('admin.dashboard', compact(
-            'totalOrders',
-            'waitingOrders',
-            'processingOrders',
-            'completedOrders',
-            'recentOrders'
-        ));
+        return view('admin.dashboard', compact('stats', 'recentOrders'));
     }
 }

@@ -15,26 +15,21 @@ class OrderController extends Controller
     {
         $query = Order::query();
 
-        // Filter status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
-        // Pencarian
         if ($request->filled('search')) {
             $search = $request->search;
 
             $query->where(function ($q) use ($search) {
-                $q->where('order_number', 'like', "%{$search}%")
-                    ->orWhere('name', 'like', "%{$search}%")
-                    ->orWhere('whatsapp', 'like', "%{$search}%");
+                $q->where('order_code', 'like', "%{$search}%")
+                ->orWhere('customer_name', 'like', "%{$search}%")
+                ->orWhere('customer_phone', 'like', "%{$search}%");
             });
         }
 
-        $orders = $query
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+        $orders = $query->latest()->paginate(10)->withQueryString();
 
         return view('admin.orders.index', compact('orders'));
     }

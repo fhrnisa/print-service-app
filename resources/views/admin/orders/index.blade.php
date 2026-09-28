@@ -116,15 +116,15 @@
                         <tr>
 
                             <td class="px-6 py-4 font-medium">
-                                {{ $order->order_number }}
+                                {{ $order->order_code }}
                             </td>
 
                             <td class="px-6 py-4">
-                                {{ $order->name }}
+                                {{ $order->customer_name }}
                             </td>
 
                             <td class="px-6 py-4">
-                                {{ $order->service }}
+                                {{ $order->channel }}
                             </td>
 
                             <td class="px-6 py-4">

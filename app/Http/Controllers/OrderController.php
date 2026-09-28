@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Service;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -58,7 +57,7 @@ class OrderController extends Controller
         // =============================
         // 4. Tentukan channel & data
         // =============================
-        $channel = $request->location === 'store' ? 'walk_in' : 'online';
+        $channel = $request->location === 'store' ? 'in_store_qr' : 'online';
 
         // Gabungkan info layanan (khusus outside)
         $details = [
@@ -83,7 +82,6 @@ class OrderController extends Controller
         // 5. Buat order
         // =============================
         $order = Order::create([
-            'order_code'     => 'ORD-' . now()->format('ymd') . '-' . strtoupper(Str::random(4)),
             'customer_name'  => $validated['name'],
             'customer_phone' => $validated['phone'] ?? null,
             'channel'        => $channel,

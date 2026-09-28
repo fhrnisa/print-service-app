@@ -42,10 +42,10 @@
         </button>
 
         {{-- Tombol cek status --}}
-        <a href="{{ route('pages.orders.status', ['order' => $orderNumber]) }}"
+        <!-- <a href="{{ route('pages.orders.status', ['order' => $orderNumber]) }}"
            class="mt-3 w-full rounded-lg bg-[#1976D2] px-4 py-3 text-base font-medium text-white">
             Cek Status Pesanan
-        </a>
+        </a> -->
 
         {{-- Tombol kembali --}}
         <a href="{{ route('welcome') }}"
